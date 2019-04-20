@@ -1,0 +1,195 @@
+create table customer(name varchar(50),contact varchar(11),email varchar(50),password varchar(50),primary key(email))
+insert into customer(3,'Raghav','9935435000','rag@gmail.com','raghu')
+
+
+create table strlu (stId int,name varchar(50),VN varchar(50),price int, primary key(stId));
+
+insert into lunch values(1,'Cottage Cheese Lasagna','Veg',425);
+insert into lunch values(2,'Mushroom Risotto','Veg',375);
+insert into lunch values(3,'Potato Rosti','Veg',370);
+insert into lunch values(4,'Grilled Cottage Cheese','Veg',380);
+insert into lunch values(5,'BBQ Pulled Pork','Non Veg',380);
+insert into lunch values(6,'Murgh Makhani','Non Veg',380);
+insert into lunch values(7,'Chicken Tikka Masala','Non Veg',390);
+insert into lunch values(8,'Rara Meat','Non Veg',400);
+insert into lunch values(9,'Hyderabad Biryani','Non Veg',400);
+insert into lunch values(10,'Peri Peri chicken','Non Veg',410);
+insert into lunch values(11,'Mutton Tikka Masala','Non Veg',410);
+insert into lunch values(12,'Mutton Korma','Non Veg',430);
+insert into lunch values(13,'Fish Curry','Non Veg',440);
+insert into lunch values(14,'Prawn Fry','Non Veg',460);
+insert into lunch values(15,'Prawn Cream','Non Veg',500);
+
+
+
+insert into strlu values(1,'Cottage Cheese Pesto','Veg',160);
+insert into strlu values(2,'Spicy Cheese and Spinach balls','Veg',160);
+insert into strlu values(3,'Bruschetta','Veg',190);
+insert into strlu values(4,'Chicken Wings','Non Veg',200);
+insert into strlu values(5,'Mutton Pepper Fry','Non Veg',220);
+insert into strlu values(6,'Mutton Chukka','Non Veg',240);
+insert into strlu values(7,'Chilly Prawns','Non Veg',240);
+insert into strlu values(8,'Salsa Peppery Prawns','Non Veg',280);
+insert into strlu values(9,'Salmon dry','Non Veg',280);
+insert into strlu values(10,'Pasta magic Chicken','Non Veg',300);
+
+
+
+create table dessert(id int,item varchar(90),price1 int,primary key(id));
+
+
+insert into dessert values(1,'CRUNCHY MUNCH',200);
+insert into dessert values(2,'CHOCOLATE DEVIL',250);
+insert into dessert values(3,'CRUNCHY ANGLE',650);
+insert into dessert values(4,'MANGO COOL',450);
+insert into dessert values(5,'WAFFLE',900);
+insert into dessert values(6,'BUBBLE CAKE',650);
+insert into dessert values(7,'STRAUBERRY CHEESE CAKE',200);
+insert into dessert values(8,'FRUITY RAINBOW',250);
+insert into dessert values(9,'CRUNCHY CAKE CREAM',200);
+insert into dessert values(10,'MANGO BERRY',100);
+
+
+
+create table soup(id1 int,item1 varchar(50), VN varchar(20),price2 int,primary key(id1));
+
+insert into soup values(1,'CREAM OF TOMATO','VEG',90);
+insert into soup values(2,'FRENCH ONION','NON VEG',80);
+insert into soup values(3,'BROCCOLI SAUSAGE','VEG',65);
+insert into soup values(4,'FIVE BEAN CREAM','NON VEG',90);
+insert into soup values(5,'WAFFLE CRUSHED CREAM','VEG',900);
+insert into soup values(6,'CHICKEN SOUP','NON VEG',65);
+
+
+create table bev(id2 int,item2 varchar(20), price3 int,primary key(id2));
+
+
+insert into bev values(1,'CHERRY COKE',35);
+insert into bev values(2,'TONIC WATER',80);
+insert into bev values(3,'ROCK SNAKE',45);
+insert into bev values(4,'KAKUBOTA',70);
+insert into bev values(5,'XERO FLAME DANCE',90);
+insert into bev values(6,'FLAME ON FIRE',100);
+
+
+
+
+create table breakf(id int,item varchar(50), price int,primary key(id));
+
+
+
+insert into breakf values(9,'CHEESE OMLETTE',120);
+insert into breakf values(1,'SAUSAGE AND BREAD',45);
+insert into breakf values(2,'BREAKFAST BURRITO',70);
+insert into breakf values(3,'PANCAKES',90);
+insert into breakf values(4,'VEGGIE OMLET',100);
+insert into breakf values(5,'CHEESE PARATHA',200);
+insert into breakf values(6,'FRENCH TOAST',250);
+insert into breakf values(7,'PORK CHOP',200);
+insert into breakf values(8,'HOME FRIES',100);
+
+
+
+
+
+
+
+comm1 = new OracleCommand();
+            comm1.CommandText = "select * from breakf";
+            comm1.CommandType = CommandType.Text;
+            ds1 = new DataSet();
+            da1 = new OracleDataAdapter(comm1.CommandText, conn1);
+            da1.Fill(ds1, "breakf");
+            dt1 = ds1.Tables["breakf"];
+            int t1 = dt1.Rows.Count;
+          
+            dr1 = dt1.Rows[i1];
+            dataGridView2.DataSource = ds1;
+            dataGridView2.DataMember = "breakf";
+            conn1.Close();
+
+         
+            comm2 = new OracleCommand();
+            comm2.CommandText = "select * from strlu";
+            comm2.CommandType = CommandType.Text;
+            ds2 = new DataSet();
+            da2 = new OracleDataAdapter(comm2.CommandText, conn2);
+            da2.Fill(ds2, "strlu");
+            dt2 = ds2.Tables["strlu"];
+            int t2 = dt2.Rows.Count;
+           
+            dr2 = dt2.Rows[i2];
+            dataGridView3.DataSource = ds2;
+            dataGridView3.DataMember = "strlu";
+            conn2.Close();
+
+
+            
+            comm3 = new OracleCommand();
+            comm3.CommandText = "select * from lunch";
+            comm3.CommandType = CommandType.Text;
+            ds3 = new DataSet();
+            da3 = new OracleDataAdapter(comm3.CommandText, conn3);
+            da3.Fill(ds3, "lunch");
+            dt3 = ds3.Tables["lunch"];
+            int t3 = dt3.Rows.Count;
+            dr3 = dt3.Rows[i3];
+            dataGridView4.DataSource = ds3;
+            dataGridView4.DataMember = "lunch";
+            conn3.Close()
+
+
+CREATE OR REPLACE PROCEDURE insertt(
+	   p_name IN customer.name%TYPE,
+	   p_contact IN customer.contact%TYPE,
+	   p_email IN customer.email%TYPE,
+	   p_password IN customer.password%TYPE)
+IS
+BEGIN
+
+  INSERT INTO customer VALUES (p_name, p_contact,p_email, p_password);
+
+  COMMIT;
+
+END;
+
+/
+
+
+
+
+
+
+CREATE OR REPLACE TRIGGER orders_after_insert
+AFTER INSERT
+   ON orders
+   FOR EACH ROW
+
+DECLARE
+   v_username varchar2(10);
+
+BEGIN
+
+   -- Find username of person performing the INSERT into the table
+   SELECT user INTO v_username
+   FROM dual;
+
+   -- Insert record into audit table
+   INSERT INTO orders_audit
+   ( order_id,
+     quantity,
+     cost_per_item,
+     total_cost,
+     username )
+   VALUES
+   ( :new.order_id,
+     :new.quantity,
+     :new.cost_per_item,
+     :new.total_cost,
+     v_username );
+
+END;
+
+/
+
+
